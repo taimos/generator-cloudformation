@@ -6,13 +6,13 @@ var helpers = require('yeoman-test');
 describe('generator-cloudformation:docker', function () {
   before(function () {
     return helpers.run(path.join(__dirname, '../generators/docker'))
-      .withPrompts({someAnswer: true})
+      .withPrompts({})
       .toPromise();
   });
 
   it('creates files', function () {
     assert.file([
-      'dummyfile.txt'
+      'cfn.yaml'
     ]);
   });
 });
