@@ -28,6 +28,12 @@ Generate a CloudFormation template that runs a web application as Docker contain
 
 Apache-2.0 © [Taimos GmbH](https://www.taimos.de)
 
+## Changelog
+
+### 0.1.0
+
+* Initial version with docker subgenerator
+
 
 [npm-image]: https://badge.fury.io/js/generator-cloudformation.svg
 [npm-url]: https://npmjs.org/package/generator-cloudformation
