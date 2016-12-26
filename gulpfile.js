@@ -32,7 +32,7 @@ gulp.task('pre-test', function () {
 
 gulp.task('test', ['pre-test'], function (cb) {
   var mochaErr;
-
+  
   gulp.src('test/**/*.js')
     .pipe(plumber())
     .pipe(mocha({reporter: 'spec'}))
@@ -53,7 +53,7 @@ gulp.task('coveralls', ['test'], function () {
   if (!process.env.CI) {
     return;
   }
-
+  
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe(coveralls());
 });
