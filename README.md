@@ -28,6 +28,10 @@ Generate a CloudFormation template that runs a web application as Docker contain
 
 Generate a CloudFormation template that deploys a AWS Lambda function that is called according to the schedule expression. 
 
+### vpc
+
+Generate a CloudFormation template that creates a VPC with subnets and routing. It exports the resources with the stack name as prefix.  
+
 ## License
 
 Apache-2.0 © [Taimos GmbH](https://www.taimos.de)
@@ -37,6 +41,7 @@ Apache-2.0 © [Taimos GmbH](https://www.taimos.de)
 ### 0.2.0
 
 * add scheduled Lambda generator
+* add VPC generator
 
 ### 0.1.0
 

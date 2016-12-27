@@ -1,6 +1,6 @@
 {
   "name": "generator-cloudformation",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate CloudFormation templates",
   "homepage": "https://github.com/taimos/generator-cloudformation",
   "author": {
