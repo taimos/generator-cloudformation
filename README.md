@@ -24,11 +24,19 @@ yo cloudformation:<name>
 
 Generate a CloudFormation template that runs a web application as Docker containers on CoreOS instances. 
 
+### cronjob
+
+Generate a CloudFormation template that deploys a AWS Lambda function that is called according to the schedule expression. 
+
 ## License
 
 Apache-2.0 © [Taimos GmbH](https://www.taimos.de)
 
 ## Changelog
+
+### 0.2.0
+
+* add scheduled Lambda generator
 
 ### 0.1.0
 

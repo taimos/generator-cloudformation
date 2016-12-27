@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: '<%= description %>'
+Resources:
+  FunctionRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Path: /
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              # TODO Insert needed permissions here
+              - Effect: Allow
+                Action:
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource: 'arn:aws:logs:*:*:*'
+  Function:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Handler: index.handler
+      Role: !GetAtt FunctionRole.Arn
+      Code:
+        ZipFile: !Sub |
+            "use strict";
+
+            var AWS = require('aws-sdk');
+
+            exports.handler = function (event, context, callback) {
+              CallSomePromiseHere.then(function () {
+                callback(null, 'Successfully finished');
+              }).catch(function (err) {
+                callback(err);
+              });
+            };
+      Runtime: nodejs4.3
+      Timeout: '<%= timeout %>'
+  CronRule:
+    Type: 'AWS::Events::Rule'
+    Properties:
+      ScheduleExpression: '<%= expression %>'
+      Targets:
+        - Id: LambdaScheduler
+          Arn: !GetAtt Function.Arn
+  InvokeLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !GetAtt Function.Arn
+      Action: 'lambda:InvokeFunction'
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt CronRule.Arn
