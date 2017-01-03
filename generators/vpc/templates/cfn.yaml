@@ -11,10 +11,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   SubnetA:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -25,10 +21,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>A
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   SubnetB:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -39,20 +31,12 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>B
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   InternetGateway:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
       Tags:
         - Key: Name
           Value: <%= name %>IGW
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   GatewayToInternet:
     Type: 'AWS::EC2::VPCGatewayAttachment'
     Properties:
@@ -65,10 +49,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>Routing
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   PublicRoute:
     Type: 'AWS::EC2::Route'
     DependsOn: GatewayToInternet

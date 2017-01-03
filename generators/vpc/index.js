@@ -22,14 +22,6 @@ module.exports = Generator.extend({
       name: 'range',
       message: 'The second byte of the VPC CIDR range?',
       default: '0'
-    }, {
-      type: 'input',
-      name: 'cost',
-      message: 'The cost reference (for tagging)?'
-    }, {
-      type: 'input',
-      name: 'customer',
-      message: 'The customer of the environment (for tagging)?'
     }];
 
     return this.prompt(prompts).then(function (props) {

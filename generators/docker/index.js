@@ -24,14 +24,6 @@ module.exports = Generator.extend({
       default: '0'
     }, {
       type: 'input',
-      name: 'cost',
-      message: 'The cost reference (for tagging)?'
-    }, {
-      type: 'input',
-      name: 'customer',
-      message: 'The customer of the service (for tagging)?'
-    }, {
-      type: 'input',
       name: 'port',
       message: 'The local port of the web app?'
     }, {

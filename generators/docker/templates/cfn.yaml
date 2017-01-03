@@ -17,10 +17,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   SubnetA:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -31,10 +27,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>A
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   SubnetB:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -45,20 +37,12 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>B
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   InternetGateway:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
       Tags:
         - Key: Name
           Value: <%= name %>IGW
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   GatewayToInternet:
     Type: 'AWS::EC2::VPCGatewayAttachment'
     Properties:
@@ -71,10 +55,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>Routing
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   PublicRoute:
     Type: 'AWS::EC2::Route'
     DependsOn: GatewayToInternet
@@ -100,10 +80,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>-ELB
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '80'
@@ -125,10 +101,6 @@ Resources:
       Tags:
         - Key: Name
           Value: <%= name %>-Instance
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '22'
@@ -210,11 +182,6 @@ Resources:
       DomainValidationOptions:
         - DomainName: '<%= hostname %>'
           ValidationDomain: '<%= domain %>'
-      Tags:
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   LoadBalancer:
     Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
     Properties:
@@ -224,11 +191,6 @@ Resources:
         - !Ref SubnetB
       SecurityGroups:
         - !Ref ELBSecurityGroup
-      Tags:
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   HTTPTargetGroup:
     Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
     Properties:
@@ -242,11 +204,6 @@ Resources:
       Port: 80
       Protocol: HTTP
       VpcId: !Ref VPC
-      Tags:
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   HTTPSTargetGroup:
     Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
     Properties:
@@ -261,11 +218,6 @@ Resources:
       Protocol: HTTP
       UnhealthyThresholdCount: 3
       VpcId: !Ref VPC
-      Tags:
-        - Key: COST
-          Value: <%= cost %>
-        - Key: Customer
-          Value: <%= customer %>
   HTTPListener:
     Type : 'AWS::ElasticLoadBalancingV2::Listener'
     Properties:
@@ -419,12 +371,6 @@ Resources:
         - !Ref HTTPTargetGroup
         - !Ref HTTPSTargetGroup
       Tags:
-        - Key: COST
-          Value: <%= cost %>
-          PropagateAtLaunch: 'true'
-        - Key: Customer
-          Value: <%= customer %>
-          PropagateAtLaunch: 'true'
         - Key: Name
           Value: <%= name %>Server
           PropagateAtLaunch: 'true'
